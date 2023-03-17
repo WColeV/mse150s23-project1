@@ -4,7 +4,7 @@ import sys
 
 
 filename = sys.argv[1]        # Stores ARG1 in filename, as in: $ python plot.py ARG1 ARG2 
-data = np.loadtxt(filename, delimiter = " ")   # Attempts to load filename into local variable data.
+data = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (1,5), max_rows = 1000)   # Attempts to load filename into local variable data.
 print(data)
 ## Part 0
 # Figure out what arguments to add to the loadtxt function call
