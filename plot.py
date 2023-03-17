@@ -10,9 +10,6 @@ test3stress = np.loadtxt(filename, delimiter = " ", skiprows = 2070, usecols = (
 test1strain = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (5), max_rows = 1000)   # Attempts to load filename into local variable data.
 test2strain = np.loadtxt(filename, delimiter = " ", skiprows = 1051, usecols = (5), max_rows = 1000)
 test3strain = np.loadtxt(filename, delimiter = " ", skiprows = 2070, usecols = (5), max_rows = 1000)
-print(test1stress)
-print(test2stress)
-print(test3strain)
 
 
 
@@ -22,8 +19,8 @@ print(test3strain)
 # plot raw-data/Sp22_245L_sec-001_tensiletest-pekk_bulk.raw
 # Make sure to include axis labels and units!
 # plt.plot(xdata, ydata, arguments-to-make-plot-pretty)
-
-
+plt.plot(test1strain, test1stress)
+plt.show()
 ## Part 2
 # Check to see if your code in part 1 will plot all of the files in raw-data/
 # Edit the files (use git liberally here!) to make them more usable
