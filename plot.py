@@ -4,16 +4,15 @@ import sys
 
 
 filename = sys.argv[1]        # Stores ARG1 in filename, as in: $ python plot.py ARG1 ARG2 
-data = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (1,5), max_rows = 1000)   # Attempts to load filename into local variable data.
-print(data)
-## Part 0
-# Figure out what arguments to add to the loadtxt function call
-# so that numbers are loaded into the local function 'data'.
-# Hint: look for arguments like 'skiprows' and 'delimiter'
-# Check by running:
-#   $ python plot.py raw-data/Sp22_245L_sec-001_tensiletest-pekk_bulk.raw
-# at the command line.
+test1 = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (1,5), max_rows = 1000)   # Attempts to load filename into local variable data.
+test2 = np.loadtxt(filename, delimiter = " ", skiprows = 1051, usecols = (1,5), max_rows = 1000)
+test3 = np.loadtxt(filename, delimiter = " ", skiprows = 2070, usecols = (1,5), max_rows = 1000) 
 
+print(test1)
+print(test2)
+print(test3)
+
+fig= plt.figure
 
 ## Part 1
 # Figure out what columns and rows of data we need to plot
@@ -26,6 +25,7 @@ print(data)
 ## Part 2
 # Check to see if your code in part 1 will plot all of the files in raw-data/
 # Edit the files (use git liberally here!) to make them more usable
+
 # Don't worry about deleting parts you might need later -- that's why we use git!
 
 
