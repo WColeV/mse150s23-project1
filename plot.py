@@ -20,6 +20,11 @@ test3strain = np.loadtxt(filename, delimiter = " ", skiprows = 2070, usecols = (
 # Make sure to include axis labels and units!
 # plt.plot(xdata, ydata, arguments-to-make-plot-pretty)
 plt.plot(test1strain, test1stress)
+
+plt.xlabel("Strain(mm)")
+plt.ylabel("Stress(Pa)")
+plt.title("Test1 Stress/Strain Curve")
+plt.legend()
 plt.show()
 ## Part 2
 # Check to see if your code in part 1 will plot all of the files in raw-data/
