@@ -4,15 +4,17 @@ import sys
 
 
 filename = sys.argv[1]        # Stores ARG1 in filename, as in: $ python plot.py ARG1 ARG2 
-test1 = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (1,5), max_rows = 1000)   # Attempts to load filename into local variable data.
-test2 = np.loadtxt(filename, delimiter = " ", skiprows = 1051, usecols = (1,5), max_rows = 1000)
-test3 = np.loadtxt(filename, delimiter = " ", skiprows = 2070, usecols = (1,5), max_rows = 1000) 
+test1stress = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (1), max_rows = 1000)   # Attempts to load filename into local variable data.
+test2stress = np.loadtxt(filename, delimiter = " ", skiprows = 1051, usecols = (1), max_rows = 1000)
+test3stress = np.loadtxt(filename, delimiter = " ", skiprows = 2070, usecols = (1), max_rows = 1000) 
+test1strain = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (5), max_rows = 1000)   # Attempts to load filename into local variable data.
+test2strain = np.loadtxt(filename, delimiter = " ", skiprows = 1051, usecols = (5), max_rows = 1000)
+test3strain = np.loadtxt(filename, delimiter = " ", skiprows = 2070, usecols = (5), max_rows = 1000)
+print(test1stress)
+print(test2stress)
+print(test3strain)
 
-print(test1)
-print(test2)
-print(test3)
 
-fig= plt.figure
 
 ## Part 1
 # Figure out what columns and rows of data we need to plot
