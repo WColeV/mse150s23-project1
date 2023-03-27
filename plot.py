@@ -1,44 +1,44 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
-
-
-filename = sys.argv[1]        # Stores ARG1 in filename, as in: $ python plot.py ARG1 ARG2 
-test1stress = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (1), max_rows = 1000)   # Attempts to load filename into local variable data.
+import pandas as pd
+from sklearn import linear_model
+## loading in filename and test data
+filename = sys.argv[1]
+test1stress = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (1), max_rows = 1000)
 test2stress = np.loadtxt(filename, delimiter = " ", skiprows = 1051, usecols = (1), max_rows = 1000)
-test3stress = np.loadtxt(filename, delimiter = " ", skiprows = 2070, usecols = (1), max_rows = 1000) 
-test1strain = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (5), max_rows = 1000)   # Attempts to load filename into local variable data.
+test3stress = np.loadtxt(filename, delimiter = " ", skiprows = 2070, usecols = (1), max_rows = 1000)
+test1strain = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (5), max_rows = 1000)
 test2strain = np.loadtxt(filename, delimiter = " ", skiprows = 1051, usecols = (5), max_rows = 1000)
 test3strain = np.loadtxt(filename, delimiter = " ", skiprows = 2070, usecols = (5), max_rows = 1000)
-
-
-
-## Part 1
-# Figure out what columns and rows of data we need to plot
-# Stress (y-axis) vs Strain (x-axis)
-# plot raw-data/Sp22_245L_sec-001_tensiletest-pekk_bulk.raw
-# Make sure to include axis labels and units!
-# plt.plot(xdata, ydata, arguments-to-make-plot-pretty)
-plt.plot(test1strain, test1stress)
-
-plt.xlabel("Strain(mm)")
+## Plotting the test data
+plt.plot(test1strain, test1stress, color= 'r', label = 'Test1')
+plt.plot(test2strain, test2stress, color= 'g', label = 'Test2')
+plt.plot(test3strain, test3stress, color= 'b', label = 'Test3')
+plt.xlabel("Strain(%)")
 plt.ylabel("Stress(Pa)")
 plt.title("Test1 Stress/Strain Curve")
 plt.legend()
 plt.show()
-## Part 2
-# Check to see if your code in part 1 will plot all of the files in raw-data/
-# Edit the files (use git liberally here!) to make them more usable
+## linear regression calculations and plot of lin reg line vs data
+x = np.array(np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (5), max_rows = 1000))
+y = np.array(np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (1), max_rows = 1000))
 
-# Don't worry about deleting parts you might need later -- that's why we use git!
+# Create a design matrix with a column of ones for the intercept
+X = np.vstack([x, np.ones(len(x))]).T
 
+# Use the linear algebra function lstsq to find the coefficients
+coef, residuals, _, _ = np.linalg.lstsq(X, y, rcond=None)
 
-## Part 3
+# Print the coefficients
+print("the coef are", coef)
+# Print the coefficients
+
+#turning test data into 1d arrays for lin reg to work
 # Use linear regression to calculate the slope of the linear part of
 # the stress-strain data. Plot your line against the data to make 
 # sure it makes sense! Use the slope of this line to calculate and print
 # the Young's modulus (with units!)
-
 
 ## Part 4
 # Modify your code to save your plots to a file and see if you can generate
