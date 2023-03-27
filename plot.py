@@ -1,8 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
-import pandas as pd
-from sklearn import linear_model
+from statistics import mean
 ## loading in filename and test data
 filename = sys.argv[1]
 test1stress = np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (1), max_rows = 1000)
@@ -20,30 +19,13 @@ plt.ylabel("Stress(Pa)")
 plt.title("Test1 Stress/Strain Curve")
 plt.legend()
 plt.show()
-## linear regression calculations and plot of lin reg line vs data
-x = np.array(np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (5), max_rows = 1000))
-y = np.array(np.loadtxt(filename, delimiter = " ", skiprows = 32, usecols = (1), max_rows = 1000))
+## linear regression calculations
 
-# Create a design matrix with a column of ones for the intercept
-X = np.vstack([x, np.ones(len(x))]).T
+def best_fit_slope(test1strain,test1stress):
+    m = (((mean(test1strain)*mean(test1stress)) - mean(test1strain*test1stress)) /
+         ((mean(test1strain)**2) - mean(test1stress**2)))
+    return m
 
-# Use the linear algebra function lstsq to find the coefficients
-coef, residuals, _, _ = np.linalg.lstsq(X, y, rcond=None)
-
-# Print the coefficients
-print("the coef are", coef)
-# Print the coefficients
-
-#turning test data into 1d arrays for lin reg to work
-# Use linear regression to calculate the slope of the linear part of
-# the stress-strain data. Plot your line against the data to make 
-# sure it makes sense! Use the slope of this line to calculate and print
-# the Young's modulus (with units!)
-
-## Part 4
-# Modify your code to save your plots to a file and see if you can generate
-# plots and Young's moduli for all of the cleaned up files in your data 
-# directory. If you haven't already, this is a good time to add text to 
-# your .gitignore file so you're not committing the figures to your repository.
-
+m = best_fit_slope(test1strain,test1stress)
+print("youngs Modulus is", m)
 
